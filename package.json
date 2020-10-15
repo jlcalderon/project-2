@@ -1,0 +1,27 @@
+{
+  "name": "project-2",
+  "version": "1.0.0",
+  "description": "App to keep track of household essentials inventory and allow users share the information",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlcalderon/project-2.git"
+  },
+  "keywords": [
+    "House",
+    "Inventory",
+    "Shooping",
+    "List",
+    "Meals",
+    "Planner"
+  ],
+  "author": "Anees Aseez, Cyrus Hanson, Brock Ehnert, Jorge Calderon",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jlcalderon/project-2/issues"
+  },
+  "homepage": "https://github.com/jlcalderon/project-2#readme"
+}
