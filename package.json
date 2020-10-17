@@ -1,27 +1,45 @@
 {
-  "name": "project-2",
-  "version": "1.0.0",
-  "description": "App to keep track of household essentials inventory and allow users share the information",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jlcalderon/project-2.git"
-  },
-  "keywords": [
-    "House",
-    "Inventory",
-    "Shooping",
-    "List",
-    "Meals",
-    "Planner"
-  ],
-  "author": "Anees Aseez, Cyrus Hanson, Brock Ehnert, Jorge Calderon",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/jlcalderon/project-2/issues"
-  },
-  "homepage": "https://github.com/jlcalderon/project-2#readme"
+    "name": "project-2",
+    "version": "1.0.0",
+    "description": "App to keep track of household essentials inventory and allow users share the information",
+    "main": "server.js",
+    "scripts": {
+        "start": "node server.js",
+        "lint": "eslint \"./**/*.js\"",
+        "fix": "eslint --fix .",
+        "test": "npm run lint && NODE_ENV=test mocha -u tdd --reporter spec --exit"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jlcalderon/project-2.git"
+    },
+    "keywords": [
+        "House",
+        "Inventory",
+        "Shooping",
+        "List",
+        "Meals",
+        "Planner"
+    ],
+    "author": "Anees Aseez, Cyrus Hanson, Brock Ehnert, Jorge Calderon",
+    "license": "MIT",
+    "dependencies": {
+        "body-parser": "^1.18.3",
+        "dotenv": "^6.0.0",
+        "express": "^4.16.3",
+        "express-handlebars": "^3.0.0",
+        "mysql2": "^1.5.3",
+        "sequelize": "^4.38.0"
+    },
+    "devDependencies": {
+        "eslint": "^4.19.1",
+        "eslint-config-prettier": "^2.9.0",
+        "eslint-plugin-prettier": "^2.6.2",
+        "mocha": "^5.2.0",
+        "prettier": "^1.13.7"
+    },
+    "bugs": {
+        "url": "https://github.com/jlcalderon/project-2/issues"
+    },
+    "homepage": "https://github.com/jlcalderon/project-2#readme"
 }
