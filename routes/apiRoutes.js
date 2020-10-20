@@ -1,24 +1,37 @@
 var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    db.Example.findAll({}).then(function(dbExamples) {
-      res.json(dbExamples);
-    });
-  });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+    // Get all inventory
+    // Add where clause to compare the quantity field with the Replenish flag
+    app.get("/api/inventory", function(req, res) {
+        db.inventory.findAll({}).then(function(dbGetInventory) {
+            res.json(dbGetInventory);
+        });
     });
-  });
 
-  // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
-    db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-      res.json(dbExample);
+    // Create a new inventory
+    app.post("/api/inventory", function(req, res) {
+        db.inventory.create(req.body).then(function(dbInventory) {
+            res.json(dbInventory);
+        });
     });
-  });
+
+    //Update item from inventory request
+    app.put("/api/inventory/:id", function(req, res) {
+        db.inventory.update({
+            categoryName: req.body.categoryName,
+            itemName: req.body.itemName,
+            quantity: req.body.quantity,
+            replenishFlag: req.body.replenishFlag,
+            price: req.body.price,
+            supplierName: req.body.supplierName
+        }, {
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbInventory) {
+            res.json(dbInventory);
+        });
+    });
 };
