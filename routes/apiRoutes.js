@@ -8,10 +8,17 @@ module.exports = function(app) {
     });
   });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    db.Example.create(req.body).then(function(dbExample) {
-      res.json(dbExample);
+  // Create a new inventory
+  app.post("/api/inventory", function(req, res) {
+    db.inventory.create(req.body).then(function(dbInventory) {
+      res.json(dbInventory);
+    });
+  });
+
+  // Create a new task
+  app.post("/api/task", function(req, res) {
+    db.task.create(req.body).then(function(dbTask) {
+      res.json(dbTask);
     });
   });
 

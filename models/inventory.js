@@ -6,32 +6,30 @@ module.exports = function(sequelize, DataTypes) {
     //   primaryKey: true,
     //   allowNull: false
     // },
-    category_name: {
+    categoryName: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
-     item_name: {
-       type: DataTypes.STRING(100),
-       allowNull: false
-     },
+    itemName: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    },
 
-     quantity: {
-       type: DataTypes.INTEGER,
-       allowNull: false
-     },
+    quantity: {
+      type: DataTypes.INTEGER,
+      allowNull: false
+    },
 
-     price: {
-       type: DataTypes.INTEGER,
-       allowNull: true
-     },
+    price: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
 
-     supplier_Name: {
-       type: DataTypes.STRING(100),
-       allowNull: false
-
-     }
-
-
+    // eslint-disable-next-line camelcase
+    supplierName: {
+      type: DataTypes.STRING(100),
+      allowNull: false
+    }
   });
   return inventory;
 };
