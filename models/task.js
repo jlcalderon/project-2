@@ -8,7 +8,7 @@ module.exports = function(sequelize, DataTypes) {
     // },
     // eslint-disable-next-line camelcase
     categoryName: {
-      taskDescription: DataTypes.STRING(100),
+      type: DataTypes.STRING(100),
       allowNull: false
     },
     personResponsible: {
