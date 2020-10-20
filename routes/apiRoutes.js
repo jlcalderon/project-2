@@ -1,7 +1,6 @@
 var db = require("../models");
 
 module.exports = function(app) {
-
     // Get all inventory
     // Add where clause to compare the quantity field with the Replenish flag
     app.get("/api/inventory", function(req, res) {
@@ -9,7 +8,6 @@ module.exports = function(app) {
             res.json(dbGetInventory);
         });
     });
-
     // Create a new inventory
     app.post("/api/inventory", function(req, res) {
         db.inventory.create(req.body).then(function(dbInventory) {
@@ -34,4 +32,4 @@ module.exports = function(app) {
             res.json(dbInventory);
         });
     });
-};
+}
