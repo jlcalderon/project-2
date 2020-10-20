@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.3 (2405546, 2018-03-11)"
+   sodipodi:docname="logo.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.4792789"
+     inkscape:cx="396.85039"
+     inkscape:cy="227.42499"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1366"
+     inkscape:window-height="705"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Capa 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:none;fill-rule:evenodd;stroke-width:0.53853166"
+       id="rect832"
+       width="197.82574"
+       height="197.82574"
+       x="5.5204592"
+       y="53.90659"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200" />
+    <g
+       id="g841"
+       transform="matrix(0.64455426,0,0,0.64455426,26.696041,56.63186)"
+       inkscape:export-xdpi="200"
+       inkscape:export-ydpi="200">
+      <rect
+         transform="matrix(0.97596453,0.21792944,-0.22190006,0.97506942,0,0)"
+         y="23.358526"
+         x="48.743031"
+         height="193.88225"
+         width="195.55077"
+         id="rect830"
+         style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.20225593" />
+      <rect
+         transform="matrix(1,0,-0.28451925,0.95867033,0,0)"
+         y="102.74825"
+         x="111.65001"
+         height="105.47742"
+         width="185.96486"
+         id="rect828"
+         style="fill:#0000ff;fill-rule:evenodd;stroke-width:0.24422637" />
+      <path
+         sodipodi:nodetypes="cccccccc"
+         inkscape:connector-curvature="0"
+         id="rect817"
+         d="m 93.490384,98.784824 47.952316,0.59789 -62.218237,-28.281021 -61.08701,23.756058 -28.741535,7.541609 -16.56438,97.76403 99.542345,-0.5436 z"
+         style="fill:#000080;fill-rule:evenodd;stroke-width:0.15773785" />
+      <text
+         id="text821"
+         y="160.06186"
+         x="2.7743647"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:35.32238388px;line-height:1.25;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:1.32458913"
+         xml:space="preserve"><tspan
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Luna;-inkscape-font-specification:Luna;fill:#ffffff;stroke-width:1.32458913"
+           y="160.06186"
+           x="2.7743647"
+           id="tspan819"
+           sodipodi:role="line">Household</tspan></text>
+      <text
+         id="text825"
+         y="183.21953"
+         x="26.799839"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:24.49894142px;line-height:1.25;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;stroke-width:0.91871029"
+         xml:space="preserve"><tspan
+           dx="0"
+           style="letter-spacing:5.29166651px;fill:#ffffff;stroke-width:0.91871029"
+           y="183.21953"
+           x="26.799839"
+           id="tspan823"
+           sodipodi:role="line">OPTIMIZER</tspan></text>
+    </g>
+  </g>
+</svg>
