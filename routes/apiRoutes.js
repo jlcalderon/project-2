@@ -36,4 +36,22 @@ module.exports = function(app) {
   //     res.json(dbExample);
   //   });
   // });
+  
+   //Update item from inventory request
+    app.put("/api/inventory:id", function(req, res) {
+        db.inventory.update({
+            categoryName: req.body.categoryName,
+            itemName: req.body.itemName,
+            quantity: req.body.quantity,
+            replenishFlag: req.body.replenishFlag,
+            price: req.body.price,
+            supplierName: req.body.supplierName
+        }, {
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbInventory) {
+            res.json(dbInventory);
+        });
+    });
 };
