@@ -7,7 +7,7 @@ module.exports = function(sequelize, DataTypes) {
     //   allowNull: false
     // },
     // eslint-disable-next-line camelcase
-    categoryName: {
+    taskDescription: {
       type: DataTypes.STRING(100),
       allowNull: false
     },
@@ -19,7 +19,12 @@ module.exports = function(sequelize, DataTypes) {
     completeTask: {
       type: DataTypes.Boolean,
       allowNull: false
+    },
+    itemId: {
+      type: DataTypes.Integer,
+      allowNull: false
     }
+
   });
   return task;
 };
