@@ -1,3 +1,18 @@
+* {
+    margin: 0%;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+}
+
+.wrapper {
+    margin: 5%;
+    padding: 2%;
+    background-color: lightgray;
+    border-radius: 20px;
+}
+
 .list-group-item {
-  line-height: 2.5;
+    line-height: 2.5;
 }

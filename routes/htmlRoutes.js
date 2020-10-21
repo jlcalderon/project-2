@@ -10,6 +10,16 @@ module.exports = function(app) {
         });
     });
 
+    // Loads the login page for active users
+    app.get("/login", function(req, res) {
+        res.render("login");
+    });
+
+    // Loads the sign up form page for creating new users
+    app.get("/signup", function(req, res) {
+        res.render("signup");
+    });
+
     // Load example page and pass in an example by id
     app.get("/example/:id", function(req, res) {
         db.Example.findOne({ where: { id: req.params.id } }).then(function(dbExample) {
