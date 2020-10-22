@@ -37,4 +37,36 @@ module.exports = function(app) {
         res.json(dbInventory);
       });
   });
+  // Get all Listdetails
+  app.get("/api/listdetails", function(req, res) {
+    db.listdetails.findAll({}).then(function(dbGetlistdetails) {
+      res.json(dbGetlistdetails);
+    });
+  });
+  // Create/Post a new Listdetails
+  app.post("/api/listdetails", function(req, res) {
+    db.listdetails.create(req.body).then(function(dbListdetails) {
+      res.json(dbListdetails);
+    });
+  });
+
+  //Update item from Listdetails request
+  app.put("/api/listdetails/:idItem", function(req, res) {
+    console.log(req.params);
+    db.listdetails
+      .update(
+        {
+          quantityObtained: req.body.quantityObtained,
+          status: req.body.status
+        },
+        {
+          where: {
+            idItem: req.params.idItem
+          }
+        }
+      )
+      .then(function(dbListdetails) {
+        res.json(dbListdetails);
+      });
+  });
 };
