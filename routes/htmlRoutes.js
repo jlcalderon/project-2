@@ -19,6 +19,37 @@ module.exports = function(app) {
     res.render("signup");
   });
 
+  //  Loads the Inventory in Home page
+  app.get("/inventory", function(req, res) {
+    db.inventory
+      .findAll({ id: req.body.id, itemName: req.body.itemName })
+      .then(function(dbinventory) {
+        res.render("inventory", {
+          inv: dbinventory
+        });
+      });
+  });
+
+  //  Loads the Inventory in Home page
+  app.get("/inventory/:id", function(req, res) {
+    db.inventory
+      .findOne({ where: { id: req.params.id } })
+      .then(function(dbinventory) {
+        res.render("inventory", {
+          item: dbinventory
+        });
+      });
+  });
+
+  app.get("/example/:id", function(req, res) {
+    db.Example.findOne({ where: { id: req.params.id } }).then(function(
+      dbExample
+    ) {
+      res.render("example", {
+        example: dbExample
+      });
+    });
+  });
   // Load example page and pass in an example by id
   app.get("/example/:id", function(req, res) {
     db.Example.findOne({ where: { id: req.params.id } }).then(function(
