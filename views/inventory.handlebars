@@ -1,17 +1,60 @@
+
 <div class="container">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <a class="navbar-brand" href="#">Navbar</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNav">
+    <ul class="navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">Add New Item <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Shopping List</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Logout</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
   <div class="row">
     <div class="col-8 offset-2">
       <div class="card mt-4">
         <div class="card-body">
-          <h1 class="card-title">Inventory in home</h1>
-          {{#each inv}}
-          <p>
-            <strong>ID</strong>: {{id}}
-            <strong>Item</strong>: {{itemName}}
-            <button data-id="{{id}}" class="view-details">View Item Details</button>
-             {{!-- <a class="btn btn-primary btn-lg" href="{{urlLogin}}" role="button">Login</a> --}}
-          </p>
-          {{/each}}
+          <h1 class="card-title">Current Household Inventory</h1>
+          <br>
+          <br>
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Item</th>
+                <th scope="col">Category</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Minimum Quantity</th>
+                <th scope="col">Price</th>
+                <th scope="col">Vendor</th>
+              </tr>
+            </thead>
+            <tbody>
+              {{#each inv}}
+              <tr>
+                {{!-- <th scope="row"></th> --}}
+                <th>{{id}}</th>
+                <td>{{itemName}}</td>
+                <td>{{categoryName}}</td>
+                <td><input class="form-control" type="text" value={{quantity}}></td>
+                <td><input class="form-control" type="text" value={{replenishFlag}}></td>
+                <td><input class="form-control" type="text" value={{price}}></td>
+                <td><input class="form-control" type="text" value={{supplierName}}></td>
+                <td><button data-id="{{id}}" class="view-details">Update Item</button></td>
+              </tr>
+              {{/each}}
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
