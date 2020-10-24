@@ -37,25 +37,25 @@ module.exports = function(app) {
         res.render("login");
     });
 
-  //  Loads the Inventory in Home page
-  app.get("/inventory", function(req, res) {
-    db.inventory.findAll({}).then(function(dbinventory) {
-      res.render("inventory", {
-        inv: dbinventory
-      });
-    });
-  });
-
-  //  Loads the Inventory in Home page
-  app.get("/inventory/:id", function(req, res) {
-    db.inventory
-      .findOne({ where: { id: req.params.id } })
-      .then(function(dbinventory) {
-        res.render("inventory", {
-          item: dbinventory
+    //  Loads the Inventory in Home page
+    app.get("/inventory", function(req, res) {
+        db.inventory.findAll({}).then(function(dbinventory) {
+            res.render("inventory", {
+                inv: dbinventory
+            });
         });
-      });
-  });
+    });
+
+    //  Loads the Inventory in Home page
+    app.get("/inventory/:id", function(req, res) {
+        db.inventory
+            .findOne({ where: { id: req.params.id } })
+            .then(function(dbinventory) {
+                res.render("inventory", {
+                    item: dbinventory
+                });
+            });
+    });
 
 
 
@@ -68,12 +68,14 @@ module.exports = function(app) {
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/dashboard", isAuthenticated, function(req, res) {
         console.log(req.user);
-        res.render("dashboard", {
-            user: req.user.userName,
-            privilege: req.user.admin
+        db.inventory.findAll({}).then(function(dbinventory) {
+            res.render("dashboard", {
+                user: req.user.userName,
+                privilege: req.user.admin,
+                inv: dbinventory
+            });
         });
     });
-
     // Load example page and pass in an example by id
     /*   app.get("/example/:id", function(req, res) {
         db.Example.findOne({ where: { id: req.params.id } }).then(function(
@@ -89,4 +91,4 @@ module.exports = function(app) {
     app.get("*", function(req, res) {
         res.render("404");
     });
-};
+}
