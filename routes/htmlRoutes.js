@@ -13,7 +13,7 @@ module.exports = function(app) {
         if (req.user) {
             console.log(`user privilege ${req.user.admin}`);
             res.render("dashboard", {
-                user: req.user,
+                user: req.user.userName,
                 privilege: req.user.admin
             });
         }
