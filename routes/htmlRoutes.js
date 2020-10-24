@@ -13,7 +13,7 @@ module.exports = function(app) {
         if (req.user) {
             console.log(`user privilege ${req.user.admin}`);
             res.render("dashboard", {
-                user: req.user,
+                user: req.user.userName,
                 privilege: req.user.admin
             });
         }
@@ -36,6 +36,28 @@ module.exports = function(app) {
         }
         res.render("login");
     });
+
+  //  Loads the Inventory in Home page
+  app.get("/inventory", function(req, res) {
+    db.inventory.findAll({}).then(function(dbinventory) {
+      res.render("inventory", {
+        inv: dbinventory
+      });
+    });
+  });
+
+  //  Loads the Inventory in Home page
+  app.get("/inventory/:id", function(req, res) {
+    db.inventory
+      .findOne({ where: { id: req.params.id } })
+      .then(function(dbinventory) {
+        res.render("inventory", {
+          item: dbinventory
+        });
+      });
+  });
+
+
 
     // Loads the sign up form page for creating new users
     app.get("/signup", function(req, res) {
