@@ -92,16 +92,17 @@ module.exports = function(app) {
 
   // Create/Post a new shoppinglist
   app.post("/api/shoppinglist", function(req, res) {
-    db.dbshoppinglist.create(req.body).then(function(dbshoppinglist) {
+    db.shoppinglist.create(req.body).then(function(dbshoppinglist) {
       res.json(dbshoppinglist);
     });
   });
 
   //Update item from shoppinglist request
-  app.put("/api/shoppinglist/:idUser", function(req, res) {
+  app.put("/api/shoppinglist/:id", function(req, res) {
     db.shoppinglist
       .update(
         {
+          idUser: req.body.idUser,
           listName: req.body.listName,
           completeTask: req.body.completeTask
         },
