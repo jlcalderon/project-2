@@ -4,11 +4,14 @@
       <div class="card mt-4">
         <div class="card-body">
           <h1 class="card-title">Inventory in home</h1>
+          {{#each inv}}
           <p>
-            <strong>ID</strong>: {{inv.id}}
-            <strong>Item</strong>: {{inv.itemName}}
-            <button data-id="{{inv.id}}" class="view-details">View Item Details</button>
+            <strong>ID</strong>: {{id}}
+            <strong>Item</strong>: {{itemName}}
+            <button data-id="{{id}}" class="view-details">View Item Details</button>
+             {{!-- <a class="btn btn-primary btn-lg" href="{{urlLogin}}" role="button">Login</a> --}}
           </p>
+          {{/each}}
         </div>
       </div>
     </div>

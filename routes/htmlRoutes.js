@@ -21,13 +21,11 @@ module.exports = function(app) {
 
   //  Loads the Inventory in Home page
   app.get("/inventory", function(req, res) {
-    db.inventory
-      .findAll({ id: req.body.id, itemName: req.body.itemName })
-      .then(function(dbinventory) {
-        res.render("inventory", {
-          inv: dbinventory
-        });
+    db.inventory.findAll({}).then(function(dbinventory) {
+      res.render("inventory", {
+        inv: dbinventory
       });
+    });
   });
 
   //  Loads the Inventory in Home page
