@@ -10,13 +10,6 @@ var isAuthenticated = require("../config/middleware/isAuthenticated");
 module.exports = function(app) {
     // Load index page
     app.get("/", function(req, res) {
-        if (req.user) {
-            console.log(`user privilege ${req.user.admin}`);
-            res.render("dashboard", {
-                user: req.user.userName,
-                privilege: req.user.admin
-            });
-        }
         res.render("index", {
             urlLogin: "/login",
             urlSignUp: "/signup"
@@ -27,18 +20,11 @@ module.exports = function(app) {
     // Loads the login page for active users
     app.get("/login", function(req, res) {
         console.log(req.user);
-        if (req.user) {
-            console.log(`user privilege ${req.user.admin}`);
-            res.render("dashboard", {
-                user: req.user.userName,
-                privilege: req.user.admin
-            });
-        }
         res.render("login");
     });
 
     //  Loads the Inventory in Home page
-    app.get("/inventory", function(req, res) {
+    app.get("/inventory", isAuthenticated, function(req, res) {
         db.inventory.findAll({}).then(function(dbinventory) {
             res.render("inventory", {
                 inv: dbinventory
@@ -47,7 +33,7 @@ module.exports = function(app) {
     });
 
     //  Loads the Inventory in Home page
-    app.get("/inventory/:id", function(req, res) {
+    app.get("/inventory/:id", isAuthenticated, function(req, res) {
         db.inventory
             .findOne({ where: { id: req.params.id } })
             .then(function(dbinventory) {
