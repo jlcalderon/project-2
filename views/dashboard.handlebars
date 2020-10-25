@@ -31,19 +31,36 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                {{#if privilege}}
+                                {{#each inv}}
+                                <tr>
+                                    {{!-- <th scope="row"></th> --}}
+                                    <th>{{id}}</th>
+                                    <td><input id="{{id}}-name" class="form-control" type="text" value="{{{itemName}}}"></td>
+                                    <td><input id="{{id}}-category" class="form-control category" type="text" value="{{{categoryName}}}"></td>
+                                    <td><input id="{{id}}-quantity" class="form-control" type="text" value="{{quantity}}"></td>
+                                    <td><input id="{{id}}-replenish" class="form-control" type="text" value="{{replenishFlag}}"></td>
+                                    <td><input id="{{id}}-price" class="form-control" type="text" value="{{price}}"></td>
+                                    <td><input id="{{id}}-supplier" class="form-control" type="text" value="{{{supplierName}}}"></td>                                    
+                                    <td><button data-id="{{id}}"  class="view-details update-item">Update Item</button></td>
+                                </tr>
+                                {{/each}}
+                                {{/if}}
+                                {{#unless privilege}}
                                 {{#each inv}}
                                 <tr>
                                     {{!-- <th scope="row"></th> --}}
                                     <th>{{id}}</th>
                                     <td>{{itemName}}</td>
                                     <td>{{categoryName}}</td>
-                                    <td><input data-id="{{id}}" class="form-control quantity" type="text" value={{quantity}}></td>
-                                    <td><input data-id="{{id}}" class="form-control replenish" type="text" value={{replenishFlag}}></td>
-                                    <td><input data-id="{{id}}" class="form-control price" type="text" value={{price}}></td>
-                                    <td><input data-id="{{id}}" class="form-control supplier" type="text" value={{supplierName}}></td>
-                                    <td><button data-id="{{id}}" class="view-details">Update Item</button></td>
+                                    <td><input data-id="{{id}}" class="form-control quantity" type="text" value={{quantity}} disabled></td>
+                                    <td><input data-id="{{id}}" class="form-control replenish" type="text" value={{replenishFlag}} disabled></td>
+                                    <td><input data-id="{{id}}" class="form-control price" type="text" value={{price}} disabled></td>
+                                    <td><input data-id="{{id}}" class="form-control supplier" type="text" value={{supplierName}} disabled></td>                                    
+                                    <td><button data-id="{{id}}"  class="view-details update-item" disabled>Update Item</button></td>
                                 </tr>
                                 {{/each}}
+                                {{/unless}}
                             </tbody>
                         </table>
                     </div>
@@ -72,7 +89,7 @@
             <div class="form-group">
                 <label for="item-category">Category:</label>
                 <select id="item-category" name="item-category" class="form-control" required>
-                    <option value="Cleaning Supply">Cleaning Suply</option>
+                    <option value="Cleaning Supply">Cleaning Supply</option>
                     <option value="Personal Care">Personal Care</option>
                     <option value="Beauty">Beauty</option>
                     <option value="Meds and Supplements">Meds and Supplements</option>
@@ -80,7 +97,7 @@
                     <option value="Drinks">Drinks</option>
                     <option value="Clothes">Clothes</option>
                     <option value="Seasonal">Seasonal</option>
-                    <option value="Paper/Office">Paper/Office</option>
+                    <option value="Office/Paper">Office/Paper</option>
                     <option value="Pets">Pets</option>
                 </select>
             </div>
@@ -103,7 +120,12 @@
                 <input type="text" id="item-supplier" name="item-supplier" placeholder="i.e Target or Bounty" class="form-control" required />
                 <small>This could be where the items are or what specific brand is this</small>
             </div>
+            {{#if privilege}}
             <button type="submit" class="btn btn-primary">Add Item</button>
+            {{/if}}
+            {{#unless privilege}}
+            <button type="submit" class="btn btn-primary" disabled>Add Item</button>
+            {{/unless}}
         </form>
       </div>
       <div class="modal-footer">
