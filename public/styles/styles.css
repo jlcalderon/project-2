@@ -1,3 +1,5 @@
+/* Wrappers */
+
 * {
     margin: 0%;
 }
@@ -7,11 +9,30 @@ body {
 }
 
 .wrapper {
-    margin: 5%;
-    padding: 2%;
+    margin: 1%;
+    padding: 1%;
     background-color: #ECF0F1;
     border-radius: 20px;
 }
+
+.container {
+    margin-top: 5%;
+}
+
+
+/* Footer */
+
+footer {
+    margin-top: 5%;
+    padding: 3%;
+    background-color: #ECF0F1;
+    text-align: center;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+
+/* From Example */
 
 .list-group-item {
     line-height: 2.5;

@@ -18,7 +18,7 @@ $(document).ready(function() {
         if (!userLogging.userName || !userLogging.password) {
             return;
         }
-        //callling the loginUser function that has our ajax request
+        //calling the loginUser function that has our ajax request
         loginUser(userLogging);
         $("input[type=text], input[type=password]").val("");
 
