@@ -1,8 +1,8 @@
 {
     "development": {
         "database": "household_optimizer",
-        "username": "root",
-        "password": null,
+        "username": "boot2020",
+        "password": "password",
         "host": "127.0.0.1",
         "port": 3306,
         "dialect": "mysql"
