@@ -31,6 +31,10 @@ a {
     color: darkblue;
 }
 
+a:hover {
+    color: darkblue;
+}
+
 
 /* Footer */
 

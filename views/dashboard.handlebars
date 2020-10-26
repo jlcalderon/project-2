@@ -42,7 +42,7 @@
                                     <td><input id="{{id}}-replenish" class="form-control" type="text" value="{{replenishFlag}}"></td>
                                     <td><input id="{{id}}-price" class="form-control" type="text" value="{{price}}"></td>
                                     <td><input id="{{id}}-supplier" class="form-control" type="text" value="{{{supplierName}}}"></td>                                    
-                                    <td><button data-id="{{id}}"  class="view-details update-item">Update Item</button></td>
+                                    <td><button data-id="{{id}}"  class="btn btn-primary update-item">Update Item</button></td>
                                 </tr>
                                 {{/each}}
                                 {{/if}}
@@ -57,7 +57,7 @@
                                     <td><input data-id="{{id}}" class="form-control replenish" type="text" value={{replenishFlag}} disabled></td>
                                     <td><input data-id="{{id}}" class="form-control price" type="text" value={{price}} disabled></td>
                                     <td><input data-id="{{id}}" class="form-control supplier" type="text" value={{supplierName}} disabled></td>                                    
-                                    <td><button data-id="{{id}}"  class="view-details update-item" disabled>Update Item</button></td>
+                                    <td><button data-id="{{id}}"  class="btn btn-primary update-item" disabled>Update Item</button></td>
                                 </tr>
                                 {{/each}}
                                 {{/unless}}
