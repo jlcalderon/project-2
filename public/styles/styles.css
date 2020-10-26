@@ -48,8 +48,12 @@ footer {
 }
 
 
-/* From Example */
+/* ShoppingLists */
 
 .list-group-item {
     line-height: 2.5;
+}
+
+.notecomplete {
+    color: red;
 }

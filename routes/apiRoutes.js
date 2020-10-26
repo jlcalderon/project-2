@@ -6,9 +6,19 @@ module.exports = function(app) {
 
     /***************  INVENTORY API ROUTES ***************/
     // Get all inventory
-    // Add where clause to compare the quantity field with the Replenish flag
     app.get("/api/inventory", function(req, res) {
         db.inventory.findAll({}).then(function(dbGetInventory) {
+            res.json(dbGetInventory);
+        });
+    });
+
+    // Get all inventory within an specific id filter
+    app.get("/api/inventory/:id", function(req, res) {
+        db.inventory.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(dbGetInventory) {
             res.json(dbGetInventory);
         });
     });
@@ -41,6 +51,7 @@ module.exports = function(app) {
     });
 
     // Find items running low on inventory
+    // Add where clause to compare the quantity field with the Replenish flag
     app.get("/api/inventory/low", function(req, res) {
         db.inventory
             .findAll({
@@ -57,6 +68,17 @@ module.exports = function(app) {
     // Get all Listdetails
     app.get("/api/listdetails", function(req, res) {
         db.listdetails.findAll({}).then(function(dbGetlistdetails) {
+            res.json(dbGetlistdetails);
+        });
+    });
+
+    // Get all Listdetails where idlist match req.params.id
+    app.get("/api/listdetails/:idList", function(req, res) {
+        db.listdetails.findAll({
+            where: {
+                idList: req.params.idList
+            }
+        }).then(function(dbGetlistdetails) {
             res.json(dbGetlistdetails);
         });
     });
@@ -90,6 +112,28 @@ module.exports = function(app) {
     app.get("/api/shoppinglist", function(req, res) {
         db.shoppinglist.findAll({}).then(function(dbGetshoppinglist) {
             res.json(dbGetshoppinglist);
+        });
+    });
+
+    // Get shopping List by id
+    app.get("/api/shoppinglist/:id", function(req, res) {
+        db.shoppinglist.findOne({
+            where: {
+                id: req.params.id
+            }
+        }).then(function(result) {
+            res.json(result);
+        });
+    });
+
+    // Get shopping List by User id
+    app.get("/api/shoppinglist/:userid", function(req, res) {
+        db.shoppinglist.findOne({
+            where: {
+                idUser: req.params.userid
+            }
+        }).then(function(result) {
+            res.json(result);
         });
     });
 
@@ -191,4 +235,15 @@ module.exports = function(app) {
             });
         }
     });
+
+    /***************  USERS MODEL API ROUTES ***************/
+    // Get all users
+    app.get("/api/users", function(req, res) {
+        db.user.findAll({}).then(function(dbGetUser) {
+            res.json(dbGetUser);
+        });
+    });
+
+
+
 };

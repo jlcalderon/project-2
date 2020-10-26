@@ -10,6 +10,24 @@ $(document).ready(function() {
     const itemPrice = $("#item-price");
     const itemSupplier = $("#item-supplier");
 
+    /* Grab the selected list */
+    var listSelected;
+
+    /** Grab all inventory in an array of objects */
+    var inventory = [];
+
+    $.ajax({
+        url: "/api/inventory",
+        method: "GET",
+    }).then(function(items) {
+        items.forEach(itm => {
+            inventory.push(itm);
+        });
+    });
+
+    console.log(inventory);
+
+
     //Triggers the submit form event
     newItemForm.on("submit", function(event) {
         event.preventDefault();
@@ -101,6 +119,108 @@ $(document).ready(function() {
 
 
 
-    /************* */
+    /************************** Shopping List ***********************/
+    /* Get request to get the users in the dropdown of shopping list */
+    $.ajax({
+        url: "api/users",
+        method: "GET",
+    }).then(function(result) {
+        //Populate the dropwon with all the users
+        result.forEach(user => {
+            $("#shopping-list-user").append(`<option value="${user.id}">${user.userName}</option>`);
+        });
+    }).catch(function(err) {
+        /* if error throw it */
+        throw err;
+    });
+
+    /* Get request to get the users in the dropdown of shopping list */
+    $.ajax({
+        url: "api/shoppinglist",
+        method: "GET",
+    }).then(function(result) {
+        //Populate the shoppinglists that we have
+        result.forEach(list => {
+            $("#shoppingListsUl").append(`<li class="list-group-item" data-id="${list.id}" data-responsible="${list.idUser}" data-completeded="${list.completeTask}">${list.listName}</li>`);
+        });
+    }).catch(function(err) {
+        /* if error throw it */
+        throw err;
+    });
+
+
+
+    /* when form shopping list submitted */
+    /* ajax post request to save the new shopping list */
+    $(".new-shoppoing-list").on("submit", function(event) {
+        event.preventDefault();
+
+        /* Create newListObj from user's input in the shopping list form */
+        let newListObj = {
+            listName: $("#shopping-list-name").val(),
+            idUser: parseInt($("#shopping-list-user").val(), 10),
+            completeTask: false
+        }
+
+        $.ajax({
+            url: "/api/shoppinglist",
+            method: "POST",
+            data: newListObj,
+        }).then(function() {
+            //Render the shoppinglists on the side by refreshing the page
+            location.reload();
+        }).catch(function(err) {
+            throw err;
+        });
+    });
+
+    /* When a list is selected */
+    $(document).on("click", ".list-group-item", function(event) {
+        event.preventDefault();
+        //Grab the clicked ID in the global variable of list selected
+        listSelected = $(this).data("id");
+        console.log(listSelected);
+
+        //Perform an ajax request GET of list details with list id = listSelected
+        $.ajax({
+            url: "/api/listdetails/" + listSelected,
+            method: "GET",
+        }).then(function(shoppingListDetails) {
+            shoppingListDetails.forEach(details => {
+                /* update the list details body from response */
+                console.log(details.idItem + " " + details.quantityObtained + " " + details.status);
+                let itemName = inventory.filter(obj => obj.id === details.idItem);
+                let category = inventory.filter(obj => obj.id === details.idItem);
+                console.log("Item name: " + itemName + "category: " + category);
+            });
+
+        }).catch(function(err) {
+            throw err;
+        });
+
+        //Enable a button on the side to inventory to add item to the selected list
+        $(".add-to-list").removeAttr("disabled");
+
+
+    });
+
+    $(".add-to-list").on("click", function(event) {
+        event.preventDefault();
+
+        //Grab the item id by data-id
+        let itemId = $(this).data("id");
+
+        //Ajax request to add a new item on the shopping list
+        $.ajax({
+            url: "/api/listdetails",
+            method: "POST",
+            data: { idList: listSelected, idItem: itemId, quantityObtained: 0, status: false },
+        }).then(function(result) {
+            console.log("item added to the list");
+        }).catch(function(err) {
+            throw err;
+        });
+
+    });
 
 });

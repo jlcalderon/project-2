@@ -43,6 +43,7 @@
                                     <td><input id="{{id}}-price" class="form-control" type="text" value="{{price}}"></td>
                                     <td><input id="{{id}}-supplier" class="form-control" type="text" value="{{{supplierName}}}"></td>                                    
                                     <td><button data-id="{{id}}"  class="btn btn-primary update-item">Update Item</button></td>
+                                    <td><button data-id="{{id}}"  class="btn btn-primary add-to-list" disabled>Add to List</button></td>
                                 </tr>
                                 {{/each}}
                                 {{/if}}
@@ -53,10 +54,10 @@
                                     <th>{{id}}</th>
                                     <td>{{itemName}}</td>
                                     <td>{{categoryName}}</td>
-                                    <td><input data-id="{{id}}" class="form-control quantity" type="text" value={{quantity}} disabled></td>
-                                    <td><input data-id="{{id}}" class="form-control replenish" type="text" value={{replenishFlag}} disabled></td>
-                                    <td><input data-id="{{id}}" class="form-control price" type="text" value={{price}} disabled></td>
-                                    <td><input data-id="{{id}}" class="form-control supplier" type="text" value={{supplierName}} disabled></td>                                    
+                                    <td><input data-id="{{id}}" class="form-control quantity" type="text" value="{{quantity}}" disabled></td>
+                                    <td><input data-id="{{id}}" class="form-control replenish" type="text" value="{{replenishFlag}}" disabled></td>
+                                    <td><input data-id="{{id}}" class="form-control price" type="text" value="{{price}}" disabled></td>
+                                    <td><input data-id="{{id}}" class="form-control supplier" type="text" value="{{{supplierName}}}" disabled></td>                                    
                                     <td><button data-id="{{id}}"  class="btn btn-primary update-item" disabled>Update Item</button></td>
                                 </tr>
                                 {{/each}}
@@ -70,7 +71,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal POST New Item-->
 <div class="modal fade" id="add-inventory" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
@@ -134,5 +135,68 @@
     </div>
   </div>
 </div>
+
+<!-- Modal Shopping Lists UI/UX Interactions-->
+<div class="modal fade" id="shoppingLists" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="ModalLabel">Shopping Lists</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+          <div class="row">
+              <div class="col-sm-12 col-md-8">
+                  <form class="new-shoppoing-list">
+                      <div class="form-group">
+                          <label for="shopping-list-name">Type your list name:</label>
+                          <input type="text" id="shopping-list-name" name="shopping-list-name" class="form-control" placeholder="i.e Weekly replenish or Christmas" required />
+                      </div>
+                      <div class="form-group">
+                          <label for="shopping-list-user">Assign it to a user:</label>
+                          <select id="shopping-list-user" class="form-control" required>
+                              {{!-- populates options from users table get all / Ajax request in dashboard.js --}}
+                          </select>
+                          <small>Only this user would be able to see this shopping list.</small>
+                      </div>
+                      <div class="form-group">
+                          <button type="submit" class="btn btn-primary">Create Shopping List</button>
+                      </div>
+                  </form>    
+              </div>
+              <div class="col-sm-12 col-md-4">
+                  <div class="card">
+                      <div class="card-body">
+                          <h5 class="card-title">Shopping Lists</h5>
+                  {{!-- Here the list of shopping lists --}}
+                  <ul id="shoppingListsUl" class="list-group">
+
+                  </ul>
+                      </div>
+                  </div>
+              </div>
+          </div>
+          <div class="row">
+              <div class="col">
+                  <div class="card">
+                      <div class="card-body">
+                        <h5 class="card-title">Details of selected Lists</h5>
+                        <div id="selectedShoppingList">
+
+                        </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/dashboard.js"></script>
