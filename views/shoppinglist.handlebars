@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="wrapper">
+        <div class="row">
+            <div class="col">
+                <div class="card mt-4">
+                    <div class="card-body">
+                        <h1 class="card-title">Your shopping lists to complete</h1>
+                        <br>
+                        <br>
+                        <table class="table table-striped">
+                            <tbody>
+                                {{#each shoppinglists}}
+                                <div>
+                                    {{shoppinglists}}
+                                </div>
+                                <tr scope="row"><h4>List Name: {{listName}}</h4></tr>
+                                <tr>
+                                    <td>
+                                        <table>
+                                            <thead>
+                                                <th scope="col">Item Name</th>
+                                                <th scope="col">Category</th>
+                                                <th scope="col">Price</th>
+                                                <th scope="col">Vendor</th>
+                                                <th scope="col"> How many you got? </th>
+                                                <th scope="col"> Mark as obtained </th>
+                                            </thead>
+                                            <tbody>
+                                                {{#each listdetails}}
+                                                <tr>
+                                                    <td>{{inventory.itemName}}</td>
+                                                    <td>{{inventory.categoryName}}</td>
+                                                    <td>{{inventory.price}}</td>
+                                                    <td>{{inventory.supplierName}}</td>
+                                                    <td><input type="number" class="form-control" id="{{inventory.id}}-quantityObtained" value="{{quantityObtained}}" min="0"/></td>
+                                                    {{#if status}}
+                                                        <td><input type="checkbox" class="form-control" id="{{inventory.id}}-status" checked disabled/></td>
+                                                    {{/if}}
+                                                    {{#unless status}}
+                                                        <td><input type="checkbox" class="form-control" id="{{inventory.id}}-status"/></td>
+                                                    {{/unless}}
+                                                </tr>
+                                                {{/each}}
+                                            </tbody>
+                                        </table>
+                                    </td>
+                                    <td>Completed: {{completeTask}}
+                                        <button id="complete-list" class="btn btn-primary">Complete this list</button>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

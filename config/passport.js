@@ -28,13 +28,6 @@ passport.use(new LocalStrategy(
                     message: "Incorrect password."
                 });
             }
-            // If none of the above, return the user
-            /* db.user.update({
-                status: true,
-                where: {
-                    userName: userName
-                }
-            }); */
             return done(null, dbUser);
         });
     }

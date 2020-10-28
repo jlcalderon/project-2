@@ -10,6 +10,17 @@ var passport = require("./config/passport");
 // Setting up port and requiring models for syncing
 var PORT = process.env.PORT || 3000;
 var db = require("./models");
+//Making references to link our models by the defined references on each of them
+//One User has many shoppinglists
+db.user.hasMany(db.shoppinglist);
+db.shoppinglist.belongsTo(db.user);
+//One shopping list contains many details
+db.shoppinglist.hasMany(db.listdetails);
+db.listdetails.belongsTo(db.shoppinglist);
+//Many items in the inventory have id references in details
+db.inventory.hasMany(db.listdetails);
+db.listdetails.belongsTo(db.inventory);
+
 
 // Creating express app and configuring middleware needed for authentication
 var app = express();

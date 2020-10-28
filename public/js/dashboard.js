@@ -134,21 +134,19 @@ $(document).ready(function() {
         throw err;
     });
 
-    /* Get request to get the users in the dropdown of shopping list */
+    /* Get request to get the shoppinglists on the side */
     $.ajax({
         url: "api/shoppinglist",
         method: "GET",
     }).then(function(result) {
         //Populate the shoppinglists that we have
         result.forEach(list => {
-            $("#shoppingListsUl").append(`<li class="list-group-item" data-id="${list.id}" data-responsible="${list.idUser}" data-completeded="${list.completeTask}">${list.listName}</li>`);
+            $("#shoppingListsUl").append(`<li class="list-group-item shopList" data-id="${list.id}" data-responsible="${list.idUser}" data-completeded="${list.completeTask}">${list.listName}</li>`);
         });
     }).catch(function(err) {
         /* if error throw it */
         throw err;
     });
-
-
 
     /* when form shopping list submitted */
     /* ajax post request to save the new shopping list */
@@ -158,7 +156,7 @@ $(document).ready(function() {
         /* Create newListObj from user's input in the shopping list form */
         let newListObj = {
             listName: $("#shopping-list-name").val(),
-            idUser: parseInt($("#shopping-list-user").val(), 10),
+            userId: parseInt($("#shopping-list-user").val(), 10),
             completeTask: false
         }
 
@@ -175,24 +173,34 @@ $(document).ready(function() {
     });
 
     /* When a list is selected */
-    $(document).on("click", ".list-group-item", function(event) {
+    $(document).on("click", ".shopList", function(event) {
         event.preventDefault();
         //Grab the clicked ID in the global variable of list selected
         listSelected = $(this).data("id");
         console.log(listSelected);
+
+        //Display a hint on the UI to let user know what list is selected
+        $(this).addClass("selected");
 
         //Perform an ajax request GET of list details with list id = listSelected
         $.ajax({
             url: "/api/listdetails/" + listSelected,
             method: "GET",
         }).then(function(shoppingListDetails) {
+            /* Creates a ul to put the items of this list togther */
+            let ulDetails = $("<ul>");
+            ulDetails.addClass("list-group");
+            var detailsArray = [];
             shoppingListDetails.forEach(details => {
-                /* update the list details body from response */
-                console.log(details.idItem + " " + details.quantityObtained + " " + details.status);
-                let itemName = inventory.filter(obj => obj.id === details.idItem);
-                let category = inventory.filter(obj => obj.id === details.idItem);
-                console.log("Item name: " + itemName + "category: " + category);
+                /*Grab the responses and create list details <li>*/
+                detailsArray.push(
+                    $("<li class='list-group-item'>")
+                    .text(details.inventory.itemName + "            " + details.inventory.price + "             " + details.inventory.supplierName + " Count inventory: " + details.inventory.quantity)
+                );
             });
+            ulDetails.append(detailsArray);
+            $("#selectedShoppingList").html("");
+            $("#selectedShoppingList").append(ulDetails);
 
         }).catch(function(err) {
             throw err;
@@ -214,9 +222,9 @@ $(document).ready(function() {
         $.ajax({
             url: "/api/listdetails",
             method: "POST",
-            data: { idList: listSelected, idItem: itemId, quantityObtained: 0, status: false },
+            data: { shoppinglistId: listSelected, inventoryId: itemId, quantityObtained: 0, status: false },
         }).then(function(result) {
-            console.log("item added to the list");
+            console.log("item added to the list:" + JSON.stringify(result));
         }).catch(function(err) {
             throw err;
         });

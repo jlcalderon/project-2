@@ -8,6 +8,8 @@ var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
+
+    /****************** RENDERS INDEX PAGE *******************/
     // Load index page
     app.get("/", function(req, res) {
         res.render("index", {
@@ -17,39 +19,21 @@ module.exports = function(app) {
 
     });
 
+    /****************** RENDERS LOGIN SCREEN *******************/
     // Loads the login page for active users
     app.get("/login", function(req, res) {
         console.log(req.user);
         res.render("login");
     });
 
-    //  Loads the Inventory in Home page
-    app.get("/inventory", isAuthenticated, function(req, res) {
-        db.inventory.findAll({}).then(function(dbinventory) {
-            res.render("inventory", {
-                inv: dbinventory
-            });
-        });
-    });
 
-    //  Loads the Inventory in Home page
-    app.get("/inventory/:id", isAuthenticated, function(req, res) {
-        db.inventory
-            .findOne({ where: { id: req.params.id } })
-            .then(function(dbinventory) {
-                res.render("inventory", {
-                    item: dbinventory
-                });
-            });
-    });
-
-
-
+    /****************** RENDER SIGNUP SCREEN *******************/
     // Loads the sign up form page for creating new users
     app.get("/signup", function(req, res) {
         res.render("signup");
     });
 
+    /****************** RENDER DASHBOARD BY USERS *******************/
     // Send users authorized to the protected route using the middleware function
     // If a user who is not logged in tries to access this route they will be redirected to the signup page
     app.get("/dashboard", isAuthenticated, function(req, res) {
@@ -62,17 +46,30 @@ module.exports = function(app) {
             });
         });
     });
-    // Load example page and pass in an example by id
-    /*   app.get("/example/:id", function(req, res) {
-        db.Example.findOne({ where: { id: req.params.id } }).then(function(
-          dbExample
-        ) {
-          res.render("example", {
-            example: dbExample,
-          });
-        });
-      }); */
 
+
+    /****************** RENDER SHOPINGLIST BY USERS *******************/
+    //Send users to see thier shopping list assignments
+    app.get("/shoppinglist", isAuthenticated, function(req, res) {
+        console.log(req.user);
+        db.shoppinglist.findAll({
+            include: [{
+                model: db.listdetails,
+                include: [{
+                    model: db.inventory
+                }]
+            }],
+            where: {
+                userId: req.user.id
+            }
+        }).then(function(shoppingListResults) {
+            res.render("shoppinglist", {
+                shoppinglists: shoppingListResults
+            });
+        });
+    });
+
+    /****************** RENDERS 404 FRIENDLY SCREEN IF THE ROUT WASN'T FOUND *******************/
     // Render 404 page for any unmatched routes
     app.get("*", function(req, res) {
         res.render("404");

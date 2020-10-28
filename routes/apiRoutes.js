@@ -73,13 +73,16 @@ module.exports = function(app) {
     });
 
     // Get all Listdetails where idlist match req.params.id
-    app.get("/api/listdetails/:idList", function(req, res) {
+    app.get("/api/listdetails/:shoppinglistId", function(req, res) {
         db.listdetails.findAll({
+            include: [{
+                model: db.inventory
+            }],
             where: {
-                idList: req.params.idList
+                shoppinglistId: req.params.shoppinglistId
             }
-        }).then(function(dbGetlistdetails) {
-            res.json(dbGetlistdetails);
+        }).then(function(resultDetails) {
+            res.json(resultDetails);
         });
     });
 
@@ -148,12 +151,12 @@ module.exports = function(app) {
     app.put("/api/shoppinglist/:id", function(req, res) {
         db.shoppinglist
             .update({
-                idUser: req.body.idUser,
+                userId: req.body.userId,
                 listName: req.body.listName,
                 completeTask: req.body.completeTask,
             }, {
                 where: {
-                    id: req.params.id,
+                    userId: req.params.id,
                 },
             })
             .then(function(dbshoppinglist) {

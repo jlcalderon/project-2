@@ -54,6 +54,10 @@ footer {
     line-height: 2.5;
 }
 
+.selected {
+    border-style: solid 2px darkblue;
+}
+
 .notecomplete {
     color: red;
 }
