@@ -19,8 +19,7 @@
                                                 <th scope="col">Price</th>
                                                 <th scope="col">Vendor</th>
                                                 <th scope="col"> How many you got? </th>
-                                                <th scope="col"> Mark as obtained </th>
-                                                <th scope="col"> Mark as Done </th>
+                                                <th scope="col"> Completed </th>
                                             </thead>
                                             <tbody>
                                                 {{#each listdetails}}
@@ -29,21 +28,20 @@
                                                     <td>{{inventory.categoryName}}</td>
                                                     <td>{{inventory.price}}</td>
                                                     <td>{{inventory.supplierName}}</td>
-                                                    <td><input type="number" class="form-control" id="{{inventory.id}}-quantityObtained" value="{{quantityObtained}}" min="0"/></td>
+                                                    <td><input type="number" data-id="{{inventory.id}}" data-name="{{inventory.itemName}}" data-category="{{inventory.categoryName}}" data-replenish="{{inventory.replenishFlag}}" data-price="{{inventory.price}}" data-supplier="{{inventory.supplierName}}" data-parent="{{shoppinglistId}}" class="form-control" id="{{inventory.id}}-quantityObtained" value="{{quantityObtained}}" min="0"/></td>
                                                     {{#if status}}
-                                                        <td><input type="checkbox" class="form-control" id="{{inventory.id}}-status" checked disabled/></td>
+                                                        <td><input data-id="{{inventory.id}}" data-name="{{inventory.itemName}}" data-category="{{inventory.categoryName}}" data-replenish="{{inventory.replenishFlag}}" data-price="{{inventory.price}}" data-supplier="{{inventory.supplierName}}"  type="checkbox" class="form-control update-control"  checked/></td>
                                                     {{/if}}
                                                     {{#unless status}}
-                                                        <td><input type="checkbox" class="form-control" id="{{inventory.id}}-status"/></td>
+                                                        <td><input data-id="{{inventory.id}}" data-name="{{inventory.itemName}}" data-category="{{inventory.categoryName}}" data-replenish="{{inventory.replenishFlag}}" data-price="{{inventory.price}}" data-supplier="{{inventory.supplierName}}" type="checkbox" class="form-control update-control" /></td>
                                                     {{/unless}}
-                                                    <td><button id="{{inventory.id}}-update" role="button" class="btn btn-primary"> Done </button></td>
                                                 </tr>
                                                 {{/each}}
                                             </tbody>
                                         </table>
                                     </td>
-                                    <td>Completed: {{completeTask}}
-                                        <button id="complete-list" class="btn btn-primary">Complete this list</button>
+                                    <td>
+                                        <button data-id="{{id}}" class="btn btn-primary complete-list">Complete this list</button>
                                     </td>
                                 </tr>
                                 {{/each}}
@@ -57,3 +55,4 @@
     {{!-- </div> --}}
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script type="text/javascript" src="/js/shoppinglist.js"></script>

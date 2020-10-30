@@ -102,7 +102,7 @@ module.exports = function(app) {
                 status: req.body.status,
             }, {
                 where: {
-                    idItem: req.params.idItem,
+                    inventoryId: req.params.idItem,
                 },
             })
             .then(function(dbListdetails) {
@@ -147,8 +147,9 @@ module.exports = function(app) {
         });
     });
 
-    //Update item from shoppinglist request
-    app.put("/api/shoppinglist/:id", function(req, res) {
+
+    //Update shoppinglist from user request
+    app.put("/api/shoppinglist/user/:id", function(req, res) {
         db.shoppinglist
             .update({
                 userId: req.body.userId,
@@ -157,6 +158,21 @@ module.exports = function(app) {
             }, {
                 where: {
                     userId: req.params.id,
+                },
+            })
+            .then(function(dbshoppinglist) {
+                res.json(dbshoppinglist);
+            });
+    });
+
+    //Update shoppinglist from shoppinglistId
+    app.put("/api/shoppinglist/id/:shoppinglistId", function(req, res) {
+        db.shoppinglist
+            .update({
+                completeTask: req.body.completeTask,
+            }, {
+                where: {
+                    id: req.params.shoppinglistId,
                 },
             })
             .then(function(dbshoppinglist) {

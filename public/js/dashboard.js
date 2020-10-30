@@ -141,7 +141,9 @@ $(document).ready(function() {
     }).then(function(result) {
         //Populate the shoppinglists that we have
         result.forEach(list => {
-            $("#shoppingListsUl").append(`<li class="list-group-item shopList" data-id="${list.id}" data-responsible="${list.idUser}" data-completeded="${list.completeTask}">${list.listName}</li>`);
+            if (!list.completeTask) {
+                $("#shoppingListsUl").append(`<li class="list-group-item shopList" data-id="${list.id}" data-responsible="${list.idUser}" data-completeded="${list.completeTask}">${list.listName}</li>`);
+            }
         });
     }).catch(function(err) {
         /* if error throw it */

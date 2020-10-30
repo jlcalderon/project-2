@@ -60,7 +60,8 @@ module.exports = function(app) {
                 }]
             }],
             where: {
-                userId: req.user.id
+                userId: req.user.id,
+                completeTask: false
             }
         }).then(function(shoppingListResults) {
             res.render("shoppinglist", {
