@@ -23,13 +23,10 @@ Special thanks to Anees Azes, Brock Erht and Cyrus Hanson for their contribution
 
 ## Database_Structure
 Before to start contributing take a moment to analyze the app database structure:
-
-<iframe width="560" height="315" src='https://dbdiagram.io/embed/5f8f1aa53a78976d7b78710f'> </iframe>
+![Database Relationships](/public/img/Household_optimizer.png)
+[Link to open diagram online](https://dbdiagram.io/d/5f8f1aa53a78976d7b78710f)
 
 ## Demo
 
 ## Questions
 Any further question about this project email direct to <jlcalderonfuentes@gmail.com> feel free to reach out and follow me on [Github](https://github.com/jlcalderon)
-
-![Database Relationships](/public/img/Household_optimizer.png)
-[Link to open diagram online](https://dbdiagram.io/d/5f8f1aa53a78976d7b78710f)
