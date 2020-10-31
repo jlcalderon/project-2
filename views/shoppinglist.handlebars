@@ -1,10 +1,14 @@
-<div class="container">
-    {{!-- <div class="wrapper"> --}}
+<div class="container">    
         <div class="row">
             <div class="col">
                 <div class="card">
                     <div class="card-body">
+                        {{#if shoppinglists}}
                         <h1 class="card-title">Your shopping lists to complete</h1>
+                        {{/if}}
+                        {{#unless shoppinglists}}
+                        <h1 class="card-title">You are up to date! no shopping lists to complete</h1>
+                        {{/unless}}
                         {{#each shoppinglists}}
                         <div class="table-responsive" style="margin-top: 3%;">
                         <table class="table table-striped table-hover">
@@ -52,7 +56,147 @@
                 </div>
             </div>
         </div>
-    {{!-- </div> --}}
 </div>
+{{#if privilege}}
+<!-- Modal POST New Item-->
+<div class="modal fade" id="add-inventory" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Add new item to inventory</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form class="add-inventory-form">
+                    <div class="form-group">
+                        <label for="item-name">Item Name:</label>
+                        <input type="text" id="item-name" name="item-name" placeholder="i.e Paper Towels"
+                            class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="item-category">Category:</label>
+                        <select id="item-category" name="item-category" class="form-control" required>
+                            <option value="Cleaning Supply">Cleaning Supply</option>
+                            <option value="Personal Care">Personal Care</option>
+                            <option value="Beauty">Beauty</option>
+                            <option value="Meds and Supplements">Meds and Supplements</option>
+                            <option value="Food and Beverages">Food and Beverages</option>
+                            <option value="Drinks">Drinks</option>
+                            <option value="Clothes">Clothes</option>
+                            <option value="Seasonal">Seasonal</option>
+                            <option value="Office/Paper">Office/Paper</option>
+                            <option value="Pets">Pets</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-quantity">Item Quantity:</label>
+                        <input type="number" id="item-quantity" name="item-quantity" min=0 value=0 class="form-control"
+                            required />
+                        <small>Count of this item in inventory, if you have none of this in your house leave it on
+                            0</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-replenish">This item needs to replenished when quantity gets to:</label>
+                        <input type="number" id="item-replenish" name="item-replenish" min=0 value=0
+                            class="form-control" required />
+                        <small>This is the number that will tell you when you are running low of this item</small>
+                    </div>
+                    <div class="form-group">
+                        <label for="item-price">USD estimated price on market:</label>
+                        <input type="text" id="item-price" name="item-price" placeholder="i.e 10.99"
+                            class="form-control" required />
+                    </div>
+                    <div class="form-group">
+                        <label for="item-supplier">Supplier name:</label>
+                        <input type="text" id="item-supplier" name="item-supplier" placeholder="i.e Target or Bounty"
+                            class="form-control" required />
+                        <small>This could be where the items are or what specific brand is this</small>
+                    </div>
+                    {{#if privilege}}
+                    <button type="submit" class="btn btn-primary">Add Item</button>
+                    {{/if}}
+                    {{#unless privilege}}
+                    <button type="submit" class="btn btn-primary" disabled>Add Item</button>
+                    {{/unless}}
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Shopping Lists UI/UX Interactions-->
+<div class="modal fade" id="shoppingLists" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="ModalLabel">Shopping Lists</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-sm-12 col-md-4">
+                        <form class="new-shoppoing-list">
+                            <div class="form-group">
+                                <label for="shopping-list-name">Type your list name:</label>
+                                <input type="text" id="shopping-list-name" name="shopping-list-name"
+                                    class="form-control" placeholder="i.e Weekly replenish or Christmas" required />
+                            </div>
+                            <div class="form-group">
+                                <label for="shopping-list-user">Assign it to a user:</label>
+                                <select id="shopping-list-user" class="form-control" required>
+                                    {{!-- populates options from users table get all / Ajax request in dashboard.js --}}
+                                </select>
+                                <small>Only this user would be able to see this shopping list.</small>
+                            </div>
+                            <div class="form-group">
+                                {{#if privilege}}
+                                    <button type="submit" class="btn btn-primary">Create Shopping List</button>
+                                {{/if}}    
+                                {{#unless privilege}}
+                                    <button type="submit" class="btn btn-primary" disabled>Create Shopping List</button>
+                                {{/unless}}
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-sm-12 col-md-8">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 id="lists-titles" class="card-title">Shopping Lists</h5>
+                                {{!-- Here the list of shopping lists --}}
+                                <ul id="shoppingListsUl" class="list-group">
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 col-md-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Details of selected Lists</h5>
+                                <div id="selectedShoppingList">
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+{{/if}}
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript" src="/js/shoppinglist.js"></script>

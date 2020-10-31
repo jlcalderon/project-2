@@ -65,7 +65,8 @@ module.exports = function(app) {
             }
         }).then(function(shoppingListResults) {
             res.render("shoppinglist", {
-                shoppinglists: shoppingListResults
+                shoppinglists: shoppingListResults,
+                privilege: req.user.admin
             });
         });
     });

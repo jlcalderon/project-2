@@ -77,7 +77,7 @@ $(document).ready(function() {
                 supplierName: $(this).data("supplier")
             }
             console.log(JSON.stringify(updateItem));
-            //Run an Ajax put request for all items on the list
+            //Run an Ajax put request for all items on the list to update inventory
             $.ajax({
                 url: "/api/inventory/" + inventoryId,
                 method: "PUT",
@@ -95,6 +95,6 @@ $(document).ready(function() {
         });
     });
 
-    //Request to update the inventory from items obtained
+
 
 });
