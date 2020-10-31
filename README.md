@@ -42,16 +42,19 @@ The regular users have acceess to:
 - they are alow to complete their asigned shopping list
 
 ## Users
+```
 Admin user:
-```{ 
+{ 
     userName: "admin",
     password: "admin"
-    }```
+}
 Regular User:
-```{ 
+
+{ 
     userName: "jhon",
     password: "1234"
-    }```
+}
+```
 Once you run the app you can create new regular users by signing up.
 
 ## Demo
