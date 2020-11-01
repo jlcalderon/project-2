@@ -69,9 +69,5 @@ within the request body you need to send along the following ```JSON``` data:
 }
 ```
 
-
-## Demo
-![A Glimpse of this app](/public/img/Household-Optimizer_gif.gif)
-
 ## Questions
 Any further question about this project email direct to <jlcalderonfuentes@gmail.com> feel free to reach out and follow me on [Github](https://github.com/jlcalderon)
