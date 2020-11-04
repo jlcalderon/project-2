@@ -183,6 +183,9 @@ $(document).ready(function() {
 
         //Display a hint on the UI to let user know what list is selected
         $(this).addClass("selected");
+        let listNameUI = $(this).text();
+        $("#alert-shopping-list-selected .msg").text(`You have selected shopping list name: ${listNameUI}. Now, you can start adding items to this shopping list!`);
+        $("#alert-shopping-list-selected").fadeIn(500);
 
         //Perform an ajax request GET of list details with list id = listSelected
         $.ajax({
@@ -227,6 +230,9 @@ $(document).ready(function() {
             data: { shoppinglistId: listSelected, inventoryId: itemId, quantityObtained: 0, status: false },
         }).then(function(result) {
             console.log("item added to the list:" + JSON.stringify(result));
+            //Display alert in UI
+            $("#alert-adding-item .msg").text(`You added ${listNameUI} to the selected shopping list`);
+            $("#alert-adding-item").fadeIn(500);
         }).catch(function(err) {
             throw err;
         });
