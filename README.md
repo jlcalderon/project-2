@@ -7,7 +7,6 @@
 * [Contributing](#Contributing)
 * [Database Structure](#Database_Structure)
 * [Privilege](#Privilege)
-* [Demo](#Demo)
 * [Questions](#Questions)
 * [Go to live app](https://vast-mesa-04959.herokuapp.com/)
 
